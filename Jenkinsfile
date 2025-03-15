@@ -3,18 +3,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Vanshikaa1444/PES1UG22AM911_Jenkins.git'
+                git branch: 'main', url: 'https://github.com/Vanshikaa1444/PES1UG22AM911_Jenkins.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'ls -l main'   // Debugging step to check if the file exists
-                sh 'g++ main/hello.cpp -o main/output'  // Compile hello.cpp in the main folder
+                sh 'g++ main/hello.cpp -o main/output'
             }
         }
         stage('Test') {
             steps {
-                sh './main/output'  // Run the compiled program
+                sh './main/output'
             }
         }
     }
