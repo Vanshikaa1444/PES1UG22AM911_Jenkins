@@ -1,25 +1,21 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Vanshikaa1444/PES1UG22AM911_Jenkins.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'g++ main.cpp -o output'  // Compile C++ file
+                sh 'ls -l main'   // Debugging step to check if the file exists
+                sh 'g++ main/hello.cpp -o main/output'  // Compile hello.cpp in the main folder
             }
         }
         stage('Test') {
             steps {
-                sh './output'  // Run compiled output
+                sh './main/output'  // Run the compiled program
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'deploy'  // Simulating deployment step
-            }
-        }
-    }
-    post {
-        failure {
-            error 'Pipeline failed'  // Message when pipeline fails
         }
     }
 }
